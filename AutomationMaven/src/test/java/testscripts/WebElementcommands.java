@@ -68,10 +68,43 @@ WebElement containText1=driver.findElement(By.xpath("//a[text()='Radio Buttons D
 WebElement containText2=driver.findElement(By.xpath("//a[text()='Checkbox Demo']"));
 WebElement containtext3=driver.findElement(By.xpath("//a[text()='Form Submit']"));
 WebElement containText4=driver.findElement(By.xpath("//a[text()='Select Input']"));
-//absolute xpath
+//WebElement 
 WebElement absolutePath=driver.findElement(By.xpath("/html/body/section/div/div/div[2]/div[1]/div/div[2]/form/button"));
 WebElement absolutePath1=driver.findElement(By.xpath("/html/body/section/div/div/div[2]/div[1]/div/div[1]"));
 WebElement absolutepathCheck=driver.findElement(By.xpath("/html/body/section/div/div/div[1]/div/div/ul/li[2]/a"));
+
+//and Xpath using
+WebElement andXpath=driver.findElement(By.xpath("//button[@id='button-one'and@type='button']"));
+WebElement andXpath1=driver.findElement(By.xpath("//button[@id='button-two' and @type=\"button\"]"));
+
+//Or Xpath
+WebElement orXpath=driver.findElement(By.xpath("//button[@id='button-one' or @id='button-o']"));
+WebElement orXpath1=driver.findElement(By.xpath("//button[@id='button-two'or @id=\"value-b\"]"));
+//identifyparent
+WebElement parentXpath=driver.findElement(By.xpath("//button[@id='button-one']/.."));
+WebElement parentXpath1=driver.findElement(By.xpath("//button[@id='button-two']/.."));
+//parent located from child
+WebElement parentChildxpath=driver.findElement(By.xpath("//button[@id='button-one']//parent::form"));
+WebElement parentChildXpath1=driver.findElement(By.xpath("//button[@id='button-two']//parent::form"));
+//child located fromParent
+WebElement childParentXpath=driver.findElement(By.xpath("//div[@id='collapsibleNavbar']//child::ul"));
+WebElement childParentXpath1=driver.findElement(By.xpath("//section[@class='clearfix']//child::ul"));
+//following Xpath
+WebElement followingXpath=driver.findElement(By.xpath("//button[@id='button-one']//following::button[@class='btn btn-primary']"));
+WebElement followingXpath1=driver.findElement(By.xpath("//button[@id='button-two']//following::div[@id='message-two']"));
+//precedingXpath
+WebElement precedingXpath=driver.findElement(By.xpath("//button[@id='button-two']//preceding::button[@class='btn btn-primary']"));
+
+//ancestorXpath
+WebElement precedingDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//preceding::div"));
+WebElement ancestorDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//ancestor::div"));
+WebElement siblingDivXpath=driver.findElement(By.xpath("//button[@data-target='#collapsibleNavbar']//following-sibling::div"));
+
+//css selector
+WebElement cssPath=driver.findElement(By.cssSelector("button#button-one"));//locate id using css selector
+WebElement cssClass=driver.findElement(By.cssSelector("section.clearfix"));//locate class using css selector
+
+
 }
 public void webTest()
 {	driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
