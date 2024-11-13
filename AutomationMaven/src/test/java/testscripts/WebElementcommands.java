@@ -3,9 +3,11 @@ package testscripts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.SinglePass;
+
 
 public class WebElementcommands extends Base {
-public void webElementCommand() 
+public void commands() 
 {
 	
 
@@ -94,18 +96,19 @@ WebElement followingXpath=driver.findElement(By.xpath("//button[@id='button-one'
 WebElement followingXpath1=driver.findElement(By.xpath("//button[@id='button-two']//following::div[@id='message-two']"));
 //precedingXpath
 WebElement precedingXpath=driver.findElement(By.xpath("//button[@id='button-two']//preceding::button[@class='btn btn-primary']"));
-
+WebElement precedingXpath1=driver.findElement(By.xpath("//button[@id='button-one']//preceding::div[@class='header-top']"));
 //ancestorXpath
 WebElement precedingDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//preceding::div"));
 WebElement ancestorDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//ancestor::div"));
 WebElement siblingDivXpath=driver.findElement(By.xpath("//button[@data-target='#collapsibleNavbar']//following-sibling::div"));
-
+WebElement siblingDivXpath1=driver.findElement(By.xpath("//button[@id='button-two']//following-sibling::div"));
 //css selector
 WebElement cssPath=driver.findElement(By.cssSelector("button#button-one"));//locate id using css selector
 WebElement cssClass=driver.findElement(By.cssSelector("section.clearfix"));//locate class using css selector
 
 
 }
+
 public void webTest()
 {	driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
 	WebElement cartTextSample=driver.findElement(By.id("page_wrapper"));
@@ -114,6 +117,21 @@ public void webTest()
 	WebElement sauceLampText=driver.findElement(By.linkText("Sauce Labs Bike Light"));
 	WebElement partialSaucetext=driver.findElement(By.partialLinkText("Sauce Labs Bike "));
 	
+}
+public void webElementCommand() 
+{
+	WebElement singleInputText=driver.findElement(By.xpath("//input[@id='single-input-field']"));
+singleInputText.sendKeys("ABC");
+WebElement showMessageButton=driver.findElement(By.id("button-one"));
+showMessageButton.click();
+WebElement yourMessage=driver.findElement(By.xpath("//div[@id='message-one']"));
+String yourMessageText=yourMessage.getText();
+singleInputText.clear();
+String backGroundColor=showMessageButton.getCssValue("background-color");
+String fontWeight=showMessageButton.getCssValue("font-weight");
+boolean isShowMessageButtonDisplayed=showMessageButton.isDisplayed();
+boolean showMessageButtonenabled=showMessageButton.isEnabled();
+//String expButtonColor=(Color.fromString(hex).asRgba());
 }
 
 	
