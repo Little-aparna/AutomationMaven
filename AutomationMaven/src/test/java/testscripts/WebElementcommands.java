@@ -7,6 +7,7 @@ import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoverySt
 
 
 public class WebElementcommands extends Base {
+	
 public void commands() 
 {
 	
@@ -78,33 +79,56 @@ WebElement absolutepathCheck=driver.findElement(By.xpath("/html/body/section/div
 //and Xpath using
 WebElement andXpath=driver.findElement(By.xpath("//button[@id='button-one'and@type='button']"));
 WebElement andXpath1=driver.findElement(By.xpath("//button[@id='button-two' and @type=\"button\"]"));
+WebElement andXPath2=driver.findElement(By.xpath("//div[@id='message-one' and @ class=\"my-2\"]"));
 
 //Or Xpath
 WebElement orXpath=driver.findElement(By.xpath("//button[@id='button-one' or @id='button-o']"));
 WebElement orXpath1=driver.findElement(By.xpath("//button[@id='button-two'or @id=\"value-b\"]"));
+WebElement orXpath2=driver.findElement(By.xpath("//input[@id='value-a' or @class='card-body'] "));
+
+
+//WebElement orXPath2=driver.findElement(By.xpath("))
 //identifyparent
 WebElement parentXpath=driver.findElement(By.xpath("//button[@id='button-one']/.."));
 WebElement parentXpath1=driver.findElement(By.xpath("//button[@id='button-two']/.."));
+WebElement parentXpath2=driver.findElement(By.xpath("//div[@id='message-one']/.."));
 //parent located from child
 WebElement parentChildxpath=driver.findElement(By.xpath("//button[@id='button-one']//parent::form"));
 WebElement parentChildXpath1=driver.findElement(By.xpath("//button[@id='button-two']//parent::form"));
+WebElement parentChildXpath2=driver.findElement(By.xpath("//div[@id='message-one']//parent::form"));
+
+
 //child located fromParent
 WebElement childParentXpath=driver.findElement(By.xpath("//div[@id='collapsibleNavbar']//child::ul"));
 WebElement childParentXpath1=driver.findElement(By.xpath("//section[@class='clearfix']//child::ul"));
+WebElement childParentXpath2=driver.findElement(By.xpath("//div[@class='container page']//child::ul"));
+
 //following Xpath
 WebElement followingXpath=driver.findElement(By.xpath("//button[@id='button-one']//following::button[@class='btn btn-primary']"));
 WebElement followingXpath1=driver.findElement(By.xpath("//button[@id='button-two']//following::div[@id='message-two']"));
+WebElement followingXpath2=driver.findElement(By.xpath("//div[@class='card-header']//following::div[@id='message-two']"));
+
 //precedingXpath
 WebElement precedingXpath=driver.findElement(By.xpath("//button[@id='button-two']//preceding::button[@class='btn btn-primary']"));
 WebElement precedingXpath1=driver.findElement(By.xpath("//button[@id='button-one']//preceding::div[@class='header-top']"));
+WebElement precedingXpath2=driver.findElement(By.xpath("//div[@id='message-one']//preceding::button[@class=\"btn btn-primary\"]"));
+
+
+
 //ancestorXpath
 WebElement precedingDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//preceding::div"));
 WebElement ancestorDivXpath=driver.findElement(By.xpath("//div[@id='message-one']//ancestor::div"));
 WebElement siblingDivXpath=driver.findElement(By.xpath("//button[@data-target='#collapsibleNavbar']//following-sibling::div"));
 WebElement siblingDivXpath1=driver.findElement(By.xpath("//button[@id='button-two']//following-sibling::div"));
-//css selector
+//css selector id
 WebElement cssPath=driver.findElement(By.cssSelector("button#button-one"));//locate id using css selector
+WebElement cssId1=driver.findElement(By.cssSelector("input#single-input-field"));
+WebElement cssId2=driver.findElement(By.cssSelector("input#value-a"));
+
+//css selector class
 WebElement cssClass=driver.findElement(By.cssSelector("section.clearfix"));//locate class using css selector
+WebElement cssClass1=driver.findElement(By.cssSelector("a.navbar-brand"));
+WebElement cssClass2=driver.findElement(By.cssSelector("ul.navbar-nav"));
 
 
 }
@@ -116,16 +140,30 @@ public void webTest()
 	WebElement tagTextSample=driver.findElement(By.tagName("footer"));
 	WebElement sauceLampText=driver.findElement(By.linkText("Sauce Labs Bike Light"));
 	WebElement partialSaucetext=driver.findElement(By.partialLinkText("Sauce Labs Bike "));
+	//WebElement partial Sauce=driver.findElement(By.p)
 	
 }
 public void webElementCommand() 
 {
+	String textValue="ABC";
+	
+	
 	WebElement singleInputText=driver.findElement(By.xpath("//input[@id='single-input-field']"));
-singleInputText.sendKeys("ABC");
+	singleInputText.sendKeys(textValue);
+	String expectedText=singleInputText.getText();
+	
+//singleInputText.sendKeys("ABC");
+//String expectedText=singleInputText.getText();
+
 WebElement showMessageButton=driver.findElement(By.id("button-one"));
 showMessageButton.click();
 WebElement yourMessage=driver.findElement(By.xpath("//div[@id='message-one']"));
 String yourMessageText=yourMessage.getText();
+yourMessageText.substring(6, 7);
+if(expectedText==yourMessageText)
+{
+	System.out.println("matching");
+}
 singleInputText.clear();
 String backGroundColor=showMessageButton.getCssValue("background-color");
 String fontWeight=showMessageButton.getCssValue("font-weight");
@@ -140,6 +178,7 @@ boolean showMessageButtonenabled=showMessageButton.isEnabled();
 	WebElementcommands webelementcommands=new WebElementcommands();
 webelementcommands.initializeBrowser();
 webelementcommands.webElementCommand();
+webelementcommands.commands();
 //webelementcommands.webTest();
 webelementcommands.driverQuit();
 
