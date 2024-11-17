@@ -7,6 +7,10 @@ import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoverySt
 
 
 public class WebElementcommands extends Base {
+	String textValue;
+	String expectedText;
+	 String outvalue;
+	
 	
 public void commands() 
 {
@@ -145,8 +149,11 @@ public void webTest()
 }
 public void webElementCommand() 
 {
+	//this.textValue=textValue;
+	//this.outvalue=outvalue;
 	String textValue="ABC";
-	
+	this.textValue=textValue;
+	System.out.println(textValue);
 	
 	WebElement singleInputText=driver.findElement(By.xpath("//input[@id='single-input-field']"));
 	singleInputText.sendKeys(textValue);
@@ -159,17 +166,32 @@ WebElement showMessageButton=driver.findElement(By.id("button-one"));
 showMessageButton.click();
 WebElement yourMessage=driver.findElement(By.xpath("//div[@id='message-one']"));
 String yourMessageText=yourMessage.getText();
-yourMessageText.substring(6, 7);
-if(expectedText==yourMessageText)
-{
-	System.out.println("matching");
-}
+System.out.println(yourMessageText);
+String outvalue=yourMessageText.substring(15,18);
+this.outvalue=outvalue;
+
+System.out.println(outvalue);
+
 singleInputText.clear();
 String backGroundColor=showMessageButton.getCssValue("background-color");
 String fontWeight=showMessageButton.getCssValue("font-weight");
 boolean isShowMessageButtonDisplayed=showMessageButton.isDisplayed();
 boolean showMessageButtonenabled=showMessageButton.isEnabled();
 //String expButtonColor=(Color.fromString(hex).asRgba());
+}
+public void singleInputField()
+{
+	//this.outvalue=outvalue;
+	System.out.println(outvalue);
+	boolean ans=textValue.equals(outvalue);
+	if(textValue.equals(outvalue))
+	{
+		System.out.println("matching");
+	}	
+	else
+	{
+		System.out.println("not matching");
+	}
 }
 
 	
@@ -179,6 +201,7 @@ boolean showMessageButtonenabled=showMessageButton.isEnabled();
 webelementcommands.initializeBrowser();
 webelementcommands.webElementCommand();
 webelementcommands.commands();
+webelementcommands.singleInputField();
 //webelementcommands.webTest();
 webelementcommands.driverQuit();
 
