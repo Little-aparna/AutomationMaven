@@ -24,6 +24,36 @@ selectMultiple.selectByIndex(2);
 selectMultiple.selectByIndex(1);
 List<WebElement> list=selectMultiple.getOptions();
 }
+public void table()
+{
+	driver.navigate().to("https://selenium.qabible.in/table-pagination.php");
+	List<WebElement> tableOptions=driver.findElements(By.xpath("//table[@id='dtBasicExample']//following::th[@class='th-sm sorting_disabled']"));
+for(WebElement option:tableOptions)
+{
+	String headerText =option.getText();
+	System.out.println(headerText);
+	if(headerText.equals("Salary"))
+			{
+		break;
+			}
+}
+	//tableOptions.
+	List<WebElement> nameOptions=driver.findElements(By.xpath("//tr[@class='odd']//following-sibling::tr"));
+	for(WebElement option:nameOptions)
+{
+	String text=option.getText();
+	String newText=text.substring(0, 10);
+	System.out.println(newText);
+	if(newText.equals("Ashton Cox"))
+			{
+		System.out.println("is there");
+		break;
+			}
+}
+	
+	
+	
+}
 public void seleniumDiv()
 {
 	driver.navigate().to("https://www.selenium.dev/");
@@ -31,6 +61,17 @@ public void seleniumDiv()
 	//Select english=new Select(englishDropDown);
 	englishDropDown.click();
 	//english.click();
+//	WebElement english=driver.findElement(null)
+	List<WebElement> languageOptions=driver.findElements(By.xpath("//ul[@class='dropdown-menu show']//a"));
+	for(WebElement option:languageOptions)
+	{
+		String text = option.getText();
+		if (text.equals("Português (Brasileiro)"))
+		{
+			option.click();
+			break;
+		}
+	}
 }
 	
 	public static void main(String[] args) {
@@ -38,6 +79,7 @@ public void seleniumDiv()
 DropDown dropdowm=new DropDown();
 dropdowm.initializeBrowser();
 dropdowm.dropDownSample();
+dropdowm.table();
 dropdowm.seleniumDiv();
 dropdowm.driverQuit();
 	}
