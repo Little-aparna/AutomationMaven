@@ -1,5 +1,6 @@
 package testscripts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -30,19 +31,21 @@ public void table()
 	List<WebElement> tableOptions=driver.findElements(By.xpath("//table[@id='dtBasicExample']//following::th[@class='th-sm sorting_disabled']"));
 for(WebElement option:tableOptions)
 {
-	String headerText =option.getText();
-	System.out.println(headerText);
+	List<String> l1=new ArrayList<>();
+	String headerText=option.getText();
+	l1.add(headerText);
+	System.out.println(l1);
 	if(headerText.equals("Salary"))
 			{
 		break;
 			}
 }
 	//tableOptions.
-	List<WebElement> nameOptions=driver.findElements(By.xpath("//tr[@class='odd']//following-sibling::tr"));
-	for(WebElement option:nameOptions)
+	List<WebElement> nameOptions=driver.findElements(By.xpath("//table[@id='dtBasicExample']//tbody//tr//td[1]"));
+	for(WebElement option1:nameOptions)
 {
-	String text=option.getText();
-	String newText=text.substring(0, 10);
+	String nameText=option1.getText();
+	String newText=nameText.substring(0, 10);
 	System.out.println(newText);
 	if(newText.equals("Ashton Cox"))
 			{
